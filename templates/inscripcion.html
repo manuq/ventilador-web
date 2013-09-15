@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Hola{% endblock %}
+{% block contenido %}
+<h2>Participá de El Ventilador</h2>
+<p>Envianos tu obra de animación.
+<ul>
+<li>Leer las bases y condiciones <a class="btn btn-success" href="{{ url_for('static', filename='venti/files/bases-el_ventilador.pdf') }}">Descargar bases y condiciones</a></li>
+<li>Completar el <a href="/inscripcion/formulario">formulario de inscripción</a></li>
+</ul>
+{% endblock %}

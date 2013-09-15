@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Hola{% endblock %}
+{% block contenido %}
+<h2>Formulario de inscripción</h2>
+<form class="form-horizontal" role="form" method="POST" action="/login">
+  <fieldset>
+
+    <legend>Sobre la obra</legend>
+
+    <div class="form-group">
+      <label for="inputTitulo" class="col-lg-2 control-label">Título de la obra</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="inputTitulo" type="text">
+      </div>
+    </div>
+
+    <div class="form-group has-error">
+      <label for="inputDuracion" class="col-lg-2 control-label">Duración de la obra</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="inputDuracion" type="text" placeholder="00:00:00">
+        <span class="help-block">Escriba la duración en horas, minutos y segundos.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <div class="checkbox">
+            <label for="inputSerie">
+              <input id="inputSerie" type="checkbox">Es serie
+            </label>
+          </div>
+          <span class="help-block">Active si la obra es una serie de animación.</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">A continuación, suba dos imágenes de la obra:</label>
+      <div class="col-lg-10">
+        <input type="file">
+      </div>
+      <div class="col-lg-10">
+        <input type="file">
+      </div>
+    </div>
+
+    <legend>Sobre el presentante (director o productor)</legend>
+
+    <div class="form-group">
+      <label for="inputPresentante" class="col-lg-2 control-label">Nombre y apellido</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="inputPresentante" type="text">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputCorreo" class="col-lg-2 control-label">Correo electrónico</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="inputCorreo" type="email">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputNacionalidad" class="col-lg-2 control-label">Nacionalidad</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="inputNacionalidad" type="text">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputDomicilio" class="col-lg-2 control-label">Domicilio</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="inputDomicilio" type="text">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputTelefono" class="col-lg-2 control-label">Teléfono</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="inputTelefono" type="text">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputFotoDirector" class="col-lg-2 control-label">A continuación, suba una foto del director</label>
+      <div class="col-lg-10">
+        <input id="inputFotoDirector" type="file"><br/><br/>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-large">Enviar</button>
+
+  </fieldset>
+</form>
+{% endblock %}
