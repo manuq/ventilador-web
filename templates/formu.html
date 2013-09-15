@@ -2,23 +2,31 @@
 {% block title %}Hola{% endblock %}
 {% block contenido %}
 <h2>Formulario de inscripción</h2>
-<form class="form-horizontal" role="form" method="POST" action="/login">
+<form class="form-horizontal" role="form" method="POST" action="{{ url_for('formu') }}">
   <fieldset>
 
     <legend>Sobre la obra</legend>
 
-    <div class="form-group">
+    <div class="form-group {% if 'titulo-obra' in errores.keys() %}has-error{% endif %}">
       <label for="inputTitulo" class="col-lg-2 control-label">Título de la obra</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputTitulo" type="text">
+        <input type="text" name="titulo-obra" id="inputTitulo" class="form-control"
+               {% if 'titulo-obra' in datos.keys() %}value="{{ datos['titulo-obra'] }}"{% endif %}>
+        {% if 'titulo-obra' in errores.keys() %}
+        <span class="help-block">{{ errores['titulo-obra'] }}</span>
+        {% endif %}
       </div>
     </div>
 
-    <div class="form-group has-error">
+    <div class="form-group {% if 'duracion-obra' in errores.keys() %}has-error{% endif %}">
       <label for="inputDuracion" class="col-lg-2 control-label">Duración de la obra</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputDuracion" type="text" placeholder="00:00:00">
-        <span class="help-block">Escriba la duración en horas, minutos y segundos.</span>
+        <input type="text" name="duracion-obra" id="inputDuracion" class="form-control" placeholder="00:00:00"
+               {% if 'duracion-obra' in datos.keys() %}value="{{ datos['duracion-obra'] }}"{% endif %}>
+        <span class="help-block">Escriba la duración en el formato horas, minutos, segundos separados por dos puntos - por ejemplo: 01:20:00</span>
+        {% if 'duracion-obra' in errores.keys() %}
+        <span class="help-block">{{ errores['duracion-obra'] }}</span>
+        {% endif %}
       </div>
     </div>
 
@@ -26,7 +34,8 @@
         <div class="col-lg-offset-2 col-lg-10">
           <div class="checkbox">
             <label for="inputSerie">
-              <input id="inputSerie" type="checkbox">Es serie
+              <input type="checkbox" name="es-serie-obra" id="inputSerie"
+                     {% if 'es-serie-obra' in datos.keys() and datos['es-serie-obra'] == True %}checked="checked"{% endif %}>Es serie
             </label>
           </div>
           <span class="help-block">Active si la obra es una serie de animación.</span>
@@ -34,49 +43,69 @@
     </div>
 
     <div class="form-group">
-      <label class="col-lg-2 control-label">A continuación, suba dos imágenes de la obra:</label>
+      <label for="inputImagenObra1" class="col-lg-2 control-label">A continuación, suba dos imágenes de la obra:</label>
       <div class="col-lg-10">
-        <input type="file">
+        <input id="inputImagenObra1" type="file">
       </div>
       <div class="col-lg-10">
-        <input type="file">
+        <input id="inputImagenObra2" type="file">
       </div>
     </div>
 
     <legend>Sobre el presentante (director o productor)</legend>
 
-    <div class="form-group">
+    <div class="form-group {% if 'nombre-presentante' in errores.keys() %}has-error{% endif %}">
       <label for="inputPresentante" class="col-lg-2 control-label">Nombre y apellido</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputPresentante" type="text">
+        <input type="text" name="nombre-presentante" id="inputPresentante" class="form-control"
+               {% if 'nombre-presentante' in datos.keys() %}value="{{ datos['nombre-presentante'] }}"{% endif %}>
+        {% if 'nombre-presentante' in errores.keys() %}
+        <span class="help-block">{{ errores['nombre-presentante'] }}</span>
+        {% endif %}
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  {% if 'correo-presentante' in errores.keys() %}has-error{% endif %}">
       <label for="inputCorreo" class="col-lg-2 control-label">Correo electrónico</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputCorreo" type="email">
+        <input type="email" name="correo-presentante" id="inputCorreo" class="form-control"
+               {% if 'correo-presentante' in datos.keys() %}value="{{ datos['correo-presentante'] }}"{% endif %}>
+        {% if 'correo-presentante' in errores.keys() %}
+        <span class="help-block">{{ errores['correo-presentante'] }}</span>
+        {% endif %}
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group {% if 'nacionalidad-presentante' in errores.keys() %}has-error{% endif %}">
       <label for="inputNacionalidad" class="col-lg-2 control-label">Nacionalidad</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputNacionalidad" type="text">
+        <input type="text" name="nacionalidad-presentante" id="inputNacionalidad" class="form-control"
+               {% if 'nacionalidad-presentante' in datos.keys() %}value="{{ datos['nacionalidad-presentante'] }}"{% endif %}>
+        {% if 'nacionalidad-presentante' in errores.keys() %}
+        <span class="help-block">{{ errores['nacionalidad-presentante'] }}</span>
+        {% endif %}
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group {% if 'domicilio-presentante' in errores.keys() %}has-error{% endif %}">
       <label for="inputDomicilio" class="col-lg-2 control-label">Domicilio</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputDomicilio" type="text">
+        <input type="text" name="domicilio-presentante" id="inputDomicilio" class="form-control"
+               {% if 'domicilio-presentante' in datos.keys() %}value="{{ datos['domicilio-presentante'] }}"{% endif %}>
+        {% if 'domicilio-presentante' in errores.keys() %}
+        <span class="help-block">{{ errores['domicilio-presentante'] }}</span>
+        {% endif %}
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group {% if 'telefono-presentante' in errores.keys() %}has-error{% endif %}">
       <label for="inputTelefono" class="col-lg-2 control-label">Teléfono</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputTelefono" type="text">
+        <input type="text" name="telefono-presentante" id="inputTelefono" class="form-control"
+               {% if 'telefono-presentante' in datos.keys() %}value="{{ datos['telefono-presentante'] }}"{% endif %}>
+        {% if 'telefono-presentante' in errores.keys() %}
+        <span class="help-block">{{ errores['telefono-presentante'] }}</span>
+        {% endif %}
       </div>
     </div>
 
