@@ -87,7 +87,7 @@ def salir():
     return redirect(url_for('index'))
 
 # FIXME PROD generar
-# >>> from venti import init_db
+# >>> from ventilador_web import init_db
 # >>> init_db()
 def init_db():
     with app.app_context():
