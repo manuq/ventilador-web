@@ -1,20 +1,45 @@
 # -*- coding: utf-8 -*-
 import os
 import re
+import sqlite3
 
 from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
+from flask import g
 
 from werkzeug import secure_filename
 
 CARPETA_SUBIDOS = '/tmp'
 EXTENSIONES_DE_IMAGEN = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
+BASE_DE_DATOS = '/tmp/inscriptos.db'
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = CARPETA_SUBIDOS
+
+# >>> from venti import init_db
+# >>> init_db()
+def init_db():
+    with app.app_context():
+        db = get_db()
+        with app.open_resource('schema.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+            db.commit()
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(BASE_DE_DATOS)
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
 
 @app.route('/')
 def index():
@@ -124,8 +149,6 @@ def formu():
         datos, errores = este_formu_vale(request.form, request.files)
         if not errores:
 
-            # FIXME hacer algo con los datos
-
             # guardar archivos
 
             subdir = os.path.join(app.config['UPLOAD_FOLDER'],
@@ -138,13 +161,34 @@ def formu():
             request.files['imagen-obra-1'].save(os.path.join(
                     subdir, filename_1))
 
-            filename_2 = secure_filename(datos['imagen-obra-2'])
-            request.files['imagen-obra-2'].save(os.path.join(
-                    subdir, filename_2))
+            filename_1 = os.path.join(subdir, secure_filename(datos['imagen-obra-1']))
+            request.files['imagen-obra-1'].save(filename_1)
 
-            filename_3 = secure_filename(datos['foto-director'])
-            request.files['foto-director'].save(os.path.join(
-                    subdir, filename_3))
+            filename_2 = os.path.join(subdir, secure_filename(datos['imagen-obra-2']))
+            request.files['imagen-obra-2'].save(filename_2)
+
+            filename_3 = os.path.join(subdir, secure_filename(datos['foto-director']))
+            request.files['foto-director'].save(filename_3)
+
+            # guardar en la base de datos
+
+            cur = get_db().cursor()
+            cur.execute('insert into inscripciones values (?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                        (None,
+                         datos['titulo-obra'],
+                         datos['duracion-obra'],
+                         datos['es-serie-obra'],
+                         filename_1,
+                         filename_2,
+                         datos['url-obra'],
+                         datos['nombre-presentante'],
+                         datos['correo-presentante'],
+                         datos['nacionalidad-presentante'],
+                         datos['domicilio-presentante'],
+                         datos['telefono-presentante'],
+                         filename_3,
+                         ))
+            get_db().commit()
 
             return render_template('gracias.html')
 
