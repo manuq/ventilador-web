@@ -4,11 +4,14 @@
 <h2>Participá de El Ventilador</h2>
 <p>Envianos tu obra de animación para la segunda edición del festival El Ventilador.
 <ol>
-  <li>Leé las bases y condiciones, y constatá que estás de acuerdo con las mismas.  Podés contactanos por cualquier duda.</li>
-  <li>Subi tu obra a algún sitio donde podamos descargarla, como por ejemplo Dropbox, WeTransfer, Google Drive. Alternativamente, podes enviárnosla por correo postal.</li>
-  <li>Completá el formulario de inscripción</li>
+  <li><strong>Leé las bases y condiciones</strong>, y constatá que estás de acuerdo con las mismas.  Podés contactanos por cualquier duda.</li>
+  <li><strong>Subi tu obra a algún sitio donde podamos descargarla</strong>, como por ejemplo Dropbox, WeTransfer, Google Drive. Alternativamente, <strong>podés enviárnosla por correo postal</strong>.</li>
+  <li><strong>Completá el formulario de inscripción</strong>.</li>
 </ol>
 
-<a class="btn btn-success" href="{{ url_for('static', filename='venti/files/bases-el_ventilador.pdf') }}">Descargar bases y condiciones</a> 
-<a class="btn btn-success" href="{{ url_for('formu') }}">Llenar el formulario de inscripción</a>
+<ul class="list-inline">
+  <li><a class="btn btn-success" target="_blank" href="{{ url_for('static', filename='venti/files/bases-el_ventilador.pdf') }}"><span class="glyphicon glyphicon-download"></span> Descargar bases y condiciones</a></li>
+  <li><a class="btn btn-success" href="{{ url_for('formu') }}"><span class="glyphicon glyphicon-check"></span> Llenar el formulario de inscripción</a></li>
+</ul>
+
 {% endblock %}
