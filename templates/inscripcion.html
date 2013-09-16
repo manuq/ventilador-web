@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Hola{% endblock %}
 {% block contenido %}
-<h2>Participá de El Ventilador</h2>
-<p>Envianos tu obra de animación para la segunda edición del festival El Ventilador.
-<ol>
-  <li><strong>Leé las bases y condiciones</strong>, y constatá que estás de acuerdo con las mismas.  Podés contactanos por cualquier duda.</li>
-  <li><strong>Subi tu obra a algún sitio donde podamos descargarla</strong>, como por ejemplo Dropbox, WeTransfer, Google Drive. Alternativamente, <strong>podés enviárnosla por correo postal</strong>.</li>
-  <li><strong>Completá el formulario de inscripción</strong>.</li>
-</ol>
+<h2>Participá de <em>El Ventilador</em></h2>
+<p>Envianos tu obra de animación para la segunda edición del festival <em>El Ventilador</em>.
+
+<h3>1- Leé las bases y condiciones</h3>
+<p>Y constatá que estás de acuerdo con las mismas.  Podés contactanos por cualquier duda.
+
+<h3>2- Subí tu obra a algún sitio desde el cual podamos descargarla</h3>
+<p>Como por ejemplo Dropbox, WeTransfer, Google Drive. Alternativamente, <strong>podés enviárnosla por correo postal</strong>.
+
+<h3>3- Completá el formulario de inscripción</h3>
+<p>Con los datos de tu obra, y tus datos personales para que podamos contactarte.
 
 <ul class="list-inline">
   <li><a class="btn btn-success" target="_blank" href="{{ url_for('static', filename='venti/files/bases-el_ventilador.pdf') }}"><span class="glyphicon glyphicon-download"></span> Descargar bases y condiciones</a></li>
