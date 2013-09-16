@@ -2,7 +2,7 @@
 {% block title %}Hola{% endblock %}
 {% block contenido %}
 <h2>Formulario de inscripción</h2>
-<form class="form-horizontal" role="form" method="POST" action="{{ url_for('formu') }}">
+<form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ url_for('formu') }}">
   <fieldset>
 
     <legend>Sobre la obra</legend>
@@ -44,11 +44,17 @@
 
     <div class="form-group">
       <label for="inputImagenObra1" class="col-lg-2 control-label">A continuación, suba dos imágenes de la obra:</label>
-      <div class="col-lg-10">
-        <input id="inputImagenObra1" type="file">
+      <div class="col-lg-10 {% if 'imagen-obra-1' in errores.keys() %}has-error{% endif %}">
+        <input type="file" name="imagen-obra-1" id="inputImagenObra1">
+        {% if 'imagen-obra-1' in errores.keys() %}
+        <span class="help-block">{{ errores['imagen-obra-1'] }}</span>
+        {% endif %}
       </div>
-      <div class="col-lg-10">
-        <input id="inputImagenObra2" type="file">
+      <div class="col-lg-10 {% if 'imagen-obra-2' in errores.keys() %}has-error{% endif %}">
+        <input type="file" name="imagen-obra-2" id="inputImagenObra2">
+        {% if 'imagen-obra-2' in errores.keys() %}
+        <span class="help-block">{{ errores['imagen-obra-2'] }}</span>
+        {% endif %}
       </div>
     </div>
 
@@ -109,10 +115,13 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group {% if 'foto-director' in errores.keys() %}has-error{% endif %}">
       <label for="inputFotoDirector" class="col-lg-2 control-label">A continuación, suba una foto del director</label>
       <div class="col-lg-10">
-        <input id="inputFotoDirector" type="file"><br/><br/>
+        <input type="file" name="foto-director" id="inputFotoDirector">
+        {% if 'foto-director' in errores.keys() %}
+        <span class="help-block">{{ errores['foto-director'] }}</span>
+        {% endif %}
       </div>
     </div>
 
