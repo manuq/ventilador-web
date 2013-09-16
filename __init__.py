@@ -286,7 +286,7 @@ def page_not_found(error):
 
 if __name__ == '__main__':
 
-    # FIXME PROD comentar
-    app.debug = True
+    if not PRODUCCION:
+        app.debug = True
 
     app.run()
