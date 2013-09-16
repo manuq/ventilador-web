@@ -9,6 +9,12 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask import g
+from flask.ext.login import LoginManager
+from flask.ext.login import UserMixin
+from flask.ext.login import login_required
+from flask.ext.login import login_user
+from flask.ext.login import logout_user
+from flask.ext.login import current_user
 
 from werkzeug import secure_filename
 
@@ -19,6 +25,49 @@ BASE_DE_DATOS = '/tmp/inscriptos.db'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = CARPETA_SUBIDOS
+
+# FIXME deploy
+# >>> import os
+# >>> os.urandom(24)
+app.secret_key = "unodostres"
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "entrar"
+
+class Usuario(UserMixin):
+    def __init__(self, id_usuario):
+        UserMixin.__init__(self)
+        self.id = id_usuario
+
+    def get_id(self):
+        return self.id
+
+usuario_admin = Usuario(u'admin')
+
+@login_manager.user_loader
+def cargar_usuario(id_usuario):
+    return usuario_admin
+
+def se_autoriza(formu):
+    # FIXME deploy
+    return formu['username'].strip() == 'admin'
+
+@app.route("/admin/entrar", methods=["GET", "POST"])
+def entrar():
+    if request.method == 'POST':
+        if se_autoriza(request.form):
+            # login and validate the user...
+            login_user(usuario_admin)
+            return redirect(request.args.get("next") or url_for("admin"))
+
+    return render_template("entrar.html", usuario=current_user)
+
+@app.route("/admin/salir")
+@login_required
+def salir():
+    logout_user()
+    return redirect(url_for('index'))
 
 # >>> from venti import init_db
 # >>> init_db()
@@ -195,11 +244,12 @@ def formu():
     return render_template('formu.html', datos=datos, errores=errores)
 
 @app.route('/admin')
+@login_required
 def admin():
     cur = get_db().cursor()
     cur.execute("select * from inscripciones")
     datos = cur.fetchall()
-    return render_template('admin.html', datos=datos)
+    return render_template('admin.html', datos=datos, usuario=current_user)
 
 @app.errorhandler(404)
 def page_not_found(error):
