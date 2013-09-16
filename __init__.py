@@ -49,8 +49,9 @@ class WebFactionMiddleware(object):
         environ['SCRIPT_NAME'] = '/el-ventilador'
         return self.app(environ, start_response)
 
-if PRODUCCION:
-    app.wsgi_app = WebFactionMiddleware(app.wsgi_app)
+# FIXME solo si el deploy no se hace es un root domain
+# if PRODUCCION:
+#     app.wsgi_app = WebFactionMiddleware(app.wsgi_app)
 
 class Usuario(UserMixin):
     def __init__(self, id_usuario):
