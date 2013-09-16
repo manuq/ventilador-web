@@ -5,6 +5,7 @@
 {% block head %}
 <meta charset="utf-8" />
 <title>{% block title %}{% endblock %} - El Ventilador</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='venti/favicon.ico') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='venti/css/venti.css') }}">
 {% endblock %}
@@ -25,7 +26,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ url_for('index') }}">El Ventilador</a>
+        <a style="padding:0" class="navbar-brand" href="{{ url_for('index') }}"><img alt="El Ventilador" src="{{ url_for('static', filename='venti/img/elventilador.png') }}" /></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -47,7 +48,10 @@
 <footer class="footer">
   <div class="container">
     {% block pie %}
-    Cinema LaCalor - 2013 <br/><a href="http://www.cinemalacalor.org.ar">www.cinemalacalor.org.ar</a>
+    <a href="http://www.cinemalacalor.org.ar">
+      <img alt="Cinema LaCalor" src="{{ url_for('static', filename='venti/img/lacalor.png') }}" />
+      www.cinemalacalor.org.ar
+    </a>
     {% endblock %}
   </div>
 </footer>
