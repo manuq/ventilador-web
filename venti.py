@@ -18,15 +18,18 @@ from flask.ext.login import current_user
 
 from werkzeug import secure_filename
 
-CARPETA_SUBIDOS = '/tmp'
+CARPETA_SUBIDOS = os.path.join(os.path.dirname(__file__), 'media')
 EXTENSIONES_DE_IMAGEN = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-BASE_DE_DATOS = '/tmp/inscriptos.db'
+# FIXME PROD cambiar
+URL_SUBIDOS = "http://0.0.0.0:8000/"
+
+BASE_DE_DATOS = os.path.join(os.path.dirname(__file__), 'inscriptos.db')
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = CARPETA_SUBIDOS
 
-# FIXME deploy
+# FIXME PROD cambiar
 # >>> import os
 # >>> os.urandom(24)
 app.secret_key = "unodostres"
@@ -50,7 +53,7 @@ def cargar_usuario(id_usuario):
     return usuario_admin
 
 def se_autoriza(formu):
-    # FIXME deploy
+    # FIXME PROD cambiar
     return formu['username'].strip() == 'admin'
 
 @app.route("/admin/entrar", methods=["GET", "POST"])
@@ -69,6 +72,7 @@ def salir():
     logout_user()
     return redirect(url_for('index'))
 
+# FIXME PROD generar
 # >>> from venti import init_db
 # >>> init_db()
 def init_db():
@@ -206,18 +210,23 @@ def formu():
             if not os.path.exists(subdir):
                 os.makedirs(subdir)
 
-            filename_1 = secure_filename(datos['imagen-obra-1'])
-            request.files['imagen-obra-1'].save(os.path.join(
-                    subdir, filename_1))
-
             filename_1 = os.path.join(subdir, secure_filename(datos['imagen-obra-1']))
             request.files['imagen-obra-1'].save(filename_1)
+
+            url_1 = os.path.join(secure_filename(datos['titulo-obra']),
+                                 secure_filename(datos['imagen-obra-1']))
 
             filename_2 = os.path.join(subdir, secure_filename(datos['imagen-obra-2']))
             request.files['imagen-obra-2'].save(filename_2)
 
+            url_2 = os.path.join(secure_filename(datos['titulo-obra']),
+                                 secure_filename(datos['imagen-obra-2']))
+
             filename_3 = os.path.join(subdir, secure_filename(datos['foto-director']))
             request.files['foto-director'].save(filename_3)
+
+            url_3 = os.path.join(secure_filename(datos['titulo-obra']),
+                                 secure_filename(datos['foto-director']))
 
             # guardar en la base de datos
 
@@ -227,15 +236,15 @@ def formu():
                          datos['titulo-obra'],
                          datos['duracion-obra'],
                          datos['es-serie-obra'],
-                         filename_1,
-                         filename_2,
+                         url_1,
+                         url_2,
                          datos['url-obra'],
                          datos['nombre-presentante'],
                          datos['correo-presentante'],
                          datos['nacionalidad-presentante'],
                          datos['domicilio-presentante'],
                          datos['telefono-presentante'],
-                         filename_3,
+                         url_3,
                          ))
             get_db().commit()
 
@@ -249,7 +258,8 @@ def admin():
     cur = get_db().cursor()
     cur.execute("select * from inscripciones")
     datos = cur.fetchall()
-    return render_template('admin.html', datos=datos, usuario=current_user)
+    return render_template('admin.html', datos=datos, usuario=current_user,
+                           URL_SUBIDOS=URL_SUBIDOS)
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -257,7 +267,7 @@ def page_not_found(error):
 
 if __name__ == '__main__':
 
-    # FIXME PROD remove
+    # FIXME PROD comentar
     app.debug = True
 
     app.run()

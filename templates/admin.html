@@ -23,15 +23,15 @@
   <td>{{ dato[1] }}</td>
   <td>{{ dato[2] }}</td>
   <td>{% if dato[3] == 1 %}<span class="glyphicon glyphicon-ok-sign"></span>{% endif %}</td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="file://{{ dato[4] }}"><span class="glyphicon glyphicon-picture"></span></a></td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="file://{{ dato[5] }}"><span class="glyphicon glyphicon-picture"></span></a></td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato[4] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato[5] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
   <td>{{ dato[6] }}</td>
   <td>{{ dato[7] }}</td>
   <td>{{ dato[8] }}</td>
   <td>{{ dato[9] }}</td>
   <td>{{ dato[10] }}</td>
   <td>{{ dato[11] }}</td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="file://{{ dato[12] }}"><span class="glyphicon glyphicon-picture"></span></a></td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato[12] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
 </tr>
 {% endfor %}
 </table>
