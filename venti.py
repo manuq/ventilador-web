@@ -8,6 +8,7 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
+from flask import send_from_directory
 from flask import g
 from flask.ext.login import LoginManager
 from flask.ext.login import UserMixin
@@ -97,6 +98,11 @@ def close_connection(exception):
 @app.route('/')
 def index():
     return redirect(url_for('inscripcion'))
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static', 'venti'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/inscripcion')
 def inscripcion():

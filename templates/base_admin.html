@@ -5,6 +5,7 @@
 {% block head %}
 <meta charset="utf-8" />
 <title>{% block title %}{% endblock %} - El Ventilador</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='venti/favicon.ico') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='venti/css/venti.css') }}">
 {% endblock %}
