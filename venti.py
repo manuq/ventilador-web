@@ -67,52 +67,52 @@ def este_formu_vale(formu, archivos):
     errores = {}
 
     if datos['titulo-obra'] == "":
-        errores['titulo-obra'] = "Ingrese el titulo de la obra."
+        errores['titulo-obra'] = "Ingresar el titulo de la obra."
 
     if datos['duracion-obra'] == "":
-        errores['duracion-obra'] = "Ingrese una duracion correcta."
+        errores['duracion-obra'] = "Ingresar una duracion correcta."
 
     if datos['url-obra'] == "":
-        errores['url-obra'] = "Ingrese una URL correcta."
+        errores['url-obra'] = "Ingresar una URL correcta."
 
     if datos['imagen-obra-1'] == "":
-        errores['imagen-obra-1'] = "Seleccione un archivo de imagen."
+        errores['imagen-obra-1'] = "Seleccionar un archivo de imagen."
 
     if not es_archivo_permitido(datos['imagen-obra-1']):
-        errores['imagen-obra-1'] = "Seleccione un archivo de imagen."
+        errores['imagen-obra-1'] = "Seleccionar un archivo de imagen."
 
     if datos['imagen-obra-2'] == "":
-        errores['imagen-obra-2'] = "Seleccione un archivo de imagen."
+        errores['imagen-obra-2'] = "Seleccionar un archivo de imagen."
 
     if not es_archivo_permitido(datos['imagen-obra-2']):
-        errores['imagen-obra-2'] = "Seleccione un archivo de imagen."
+        errores['imagen-obra-2'] = "Seleccionar un archivo de imagen."
 
     if len(datos['duracion-obra'].split(":")) != 3:
-        errores['duracion-obra'] = "Ingrese una duracion correcta, en el formato especificado."
+        errores['duracion-obra'] = "Ingresar una duracion correcta, en el formato especificado."
 
     if datos['nombre-presentante'] == "":
-        errores['nombre-presentante'] = "Ingrese el nombre del presentante."
+        errores['nombre-presentante'] = "Ingresar el nombre del presentante."
 
     if datos['correo-presentante'] == "":
-        errores['correo-presentante'] = "Ingrese una direccion de correo electronico valida."
+        errores['correo-presentante'] = "Ingresar una direccion de correo electronico valida."
 
     if not re.match(r"[^@]+@[^@]+\.[^@]+", datos['correo-presentante']):
-        errores['correo-presentante'] = "Ingrese una direccion de correo electronico valida."
+        errores['correo-presentante'] = "Ingresar una direccion de correo electronico valida."
 
     if datos['nacionalidad-presentante'] == "":
-        errores['nacionalidad-presentante'] = "Ingrese la nacionalidad del presentante."
+        errores['nacionalidad-presentante'] = "Ingresar la nacionalidad del presentante."
 
     if datos['domicilio-presentante'] == "":
-        errores['domicilio-presentante'] = "Ingrese el domicilio del presentante."
+        errores['domicilio-presentante'] = "Ingresar el domicilio del presentante."
 
     if datos['telefono-presentante'] == "":
-        errores['telefono-presentante'] = "Ingrese el telefono del presentante."
+        errores['telefono-presentante'] = "Ingresar el telefono del presentante."
 
     if datos['foto-director'] == "":
-        errores['foto-director'] = "Seleccione un archivo de imagen."
+        errores['foto-director'] = "Seleccionar un archivo de imagen."
 
     if not es_archivo_permitido(datos['foto-director']):
-        errores['foto-director'] = "Seleccione un archivo de imagen."
+        errores['foto-director'] = "Seleccionar un archivo de imagen."
 
     return datos, errores
 

@@ -23,7 +23,7 @@
       <div class="col-lg-10">
         <input type="text" name="duracion-obra" id="inputDuracion" class="form-control" placeholder="00:00:00"
                {% if 'duracion-obra' in datos.keys() %}value="{{ datos['duracion-obra'] }}"{% endif %}>
-        <span class="help-block">Escriba la duración en el formato horas, minutos, segundos separados por dos puntos - por ejemplo: 01:20:00</span>
+        <span class="help-block">Escribí la duración en el formato horas, minutos, segundos separados por dos puntos.  Por ejemplo: 01:20:00</span>
         {% if 'duracion-obra' in errores.keys() %}
         <span class="help-block">{{ errores['duracion-obra'] }}</span>
         {% endif %}
@@ -38,12 +38,12 @@
                      {% if 'es-serie-obra' in datos.keys() and datos['es-serie-obra'] == True %}checked="checked"{% endif %}>Es serie
             </label>
           </div>
-          <span class="help-block">Active si la obra es una serie de animación.</span>
+          <span class="help-block">Activá si la obra es una serie de animación.</span>
         </div>
     </div>
 
     <div class="form-group">
-      <label for="inputImagenObra1" class="col-lg-2 control-label">A continuación, suba dos imágenes de la obra:</label>
+      <label for="inputImagenObra1" class="col-lg-2 control-label">A continuación, seleccioná dos imágenes de la obra desde tu computadora:</label>
       <div class="col-lg-10 {% if 'imagen-obra-1' in errores.keys() %}has-error{% endif %}">
         <input type="file" name="imagen-obra-1" id="inputImagenObra1">
         {% if 'imagen-obra-1' in errores.keys() %}
@@ -63,7 +63,7 @@
       <div class="col-lg-10">
         <input type="url" name="url-obra" id="inputURL" class="form-control"
                {% if 'url-obra' in datos.keys() %}value="{{ datos['url-obra'] }}"{% endif %} placeholder="http://...">
-        <span class="help-block">Coloque aquí la dirección URL para que podamos descargar su obra. Omita si la va a enviar por correo postal.</span>
+        <span class="help-block">Colocá la dirección URL para que podamos descargar tu obra. Omitila si nos la vas a enviar por correo postal.</span>
         {% if 'url-obra' in errores.keys() %}
         <span class="help-block">{{ errores['url-obra'] }}</span>
         {% endif %}
@@ -128,7 +128,7 @@
     </div>
 
     <div class="form-group {% if 'foto-director' in errores.keys() %}has-error{% endif %}">
-      <label for="inputFotoDirector" class="col-lg-2 control-label">A continuación, suba una foto del director</label>
+      <label for="inputFotoDirector" class="col-lg-2 control-label">A continuación, seleccioná una foto del director desde tu computadora</label>
       <div class="col-lg-10">
         <input type="file" name="foto-director" id="inputFotoDirector">
         {% if 'foto-director' in errores.keys() %}
