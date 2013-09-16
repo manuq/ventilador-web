@@ -27,6 +27,8 @@ URL_SUBIDOS = "http://0.0.0.0:8000/"
 
 BASE_DE_DATOS = os.path.join(os.path.dirname(__file__), 'inscriptos.db')
 
+PRODUCCION = False
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = CARPETA_SUBIDOS
 
@@ -38,6 +40,17 @@ app.secret_key = "unodostres"
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "entrar"
+
+class WebFactionMiddleware(object):
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        environ['SCRIPT_NAME'] = '/el-ventilador'
+        return self.app(environ, start_response)
+
+if PRODUCCION:
+    app.wsgi_app = WebFactionMiddleware(app.wsgi_app)
 
 class Usuario(UserMixin):
     def __init__(self, id_usuario):
