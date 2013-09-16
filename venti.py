@@ -36,6 +36,7 @@ def este_formu_vale(formu, archivos):
         'titulo-obra': formu['titulo-obra'].strip(),
         'duracion-obra': formu['duracion-obra'].strip(),
         'es-serie-obra': formu.get('es-serie-obra', None) == 'on',
+        'url-obra': formu['url-obra'].strip(),
         'nombre-presentante': formu['nombre-presentante'].strip(),
         'correo-presentante': formu['correo-presentante'].strip(),
         'nacionalidad-presentante': formu['nacionalidad-presentante'].strip(),
@@ -70,6 +71,9 @@ def este_formu_vale(formu, archivos):
 
     if datos['duracion-obra'] == "":
         errores['duracion-obra'] = "Ingrese una duracion correcta."
+
+    if datos['url-obra'] == "":
+        errores['url-obra'] = "Ingrese una URL correcta."
 
     if datos['imagen-obra-1'] == "":
         errores['imagen-obra-1'] = "Seleccione un archivo de imagen."

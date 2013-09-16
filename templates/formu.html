@@ -58,6 +58,18 @@
       </div>
     </div>
 
+    <div class="form-group {% if 'url-obra' in errores.keys() %}has-error{% endif %}">
+      <label for="inputURL" class="col-lg-2 control-label">Dirección URL para descarga directa</label>
+      <div class="col-lg-10">
+        <input type="url" name="url-obra" id="inputURL" class="form-control"
+               {% if 'url-obra' in datos.keys() %}value="{{ datos['url-obra'] }}"{% endif %} placeholder="http://...">
+        <span class="help-block">Coloque aquí la dirección URL para que podamos descargar su obra. Omita si la va a enviar por correo postal.</span>
+        {% if 'url-obra' in errores.keys() %}
+        <span class="help-block">{{ errores['url-obra'] }}</span>
+        {% endif %}
+      </div>
+    </div>
+
     <legend>Sobre el presentante (director o productor)</legend>
 
     <div class="form-group {% if 'nombre-presentante' in errores.keys() %}has-error{% endif %}">
