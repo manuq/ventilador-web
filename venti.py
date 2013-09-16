@@ -194,6 +194,13 @@ def formu():
 
     return render_template('formu.html', datos=datos, errores=errores)
 
+@app.route('/admin')
+def admin():
+    cur = get_db().cursor()
+    cur.execute("select * from inscripciones")
+    datos = cur.fetchall()
+    return render_template('admin.html', datos=datos)
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('ups.html'), 404

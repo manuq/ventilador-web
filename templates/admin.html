@@ -1,0 +1,39 @@
+{% extends "base_admin.html" %}
+{% block title %}Admin{% endblock %}
+{% block contenido %}
+<h2>Inscriptos</h2>
+<small>
+<table class="table table-condensed">
+<tr>
+  <th>Titulo</th>
+  <th>Duracion</th>
+  <th>Es serie</th>
+  <th>Imagen 1</th>
+  <th>Imagen 2</th>
+  <th>URL descarga</th>
+  <th>Nombre presentante</th>
+  <th>Correo presentante</th>
+  <th>Nacionalidad presentante</th>
+  <th>Domicilio presentante</th>
+  <th>Telefono presentante</th>
+  <th>Foto director</th>
+</tr>
+{% for dato in datos %}
+<tr>
+  <td>{{ dato[1] }}</td>
+  <td>{{ dato[2] }}</td>
+  <td>{% if dato[3] == 1 %}<span class="glyphicon glyphicon-ok-sign"></span>{% endif %}</td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="file://{{ dato[4] }}"><span class="glyphicon glyphicon-picture"></span></a></td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="file://{{ dato[5] }}"><span class="glyphicon glyphicon-picture"></span></a></td>
+  <td>{{ dato[6] }}</td>
+  <td>{{ dato[7] }}</td>
+  <td>{{ dato[8] }}</td>
+  <td>{{ dato[9] }}</td>
+  <td>{{ dato[10] }}</td>
+  <td>{{ dato[11] }}</td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="file://{{ dato[12] }}"><span class="glyphicon glyphicon-picture"></span></a></td>
+</tr>
+{% endfor %}
+</table>
+</small>
+{% endblock %}
