@@ -6,38 +6,15 @@
 <table id="inscriptos" class="table table-condensed">
 <tr>
   <th>Titulo</th>
-  <th>Duracion</th>
-  <th>Sinopsis</th>
-  <th>País de origen</th>
+  <th>Presentante</th>
   <th>Es serie</th>
-  <th>Imagen 1</th>
-  <th>Imagen 2</th>
-  <th>URL descarga</th>
-  <th>Nombre presentante</th>
-  <th>Nacionalidad presentante</th>
-  <th>Correo presentante</th>
-  <th>Domicilio presentante</th>
-  <th>Web presentante</th>
-  <th>Telefono presentante</th>
-  <th>Foto director</th>
 </tr>
 {% for dato in datos %}
+{% set id = dato["id"] %}
 <tr>
-  <td>{{ dato["titulo_obra"] }}</td>
-  <td>{{ dato["duracion_obra"] }}</td>
-  <td>{{ dato["sinopsis_obra"] }}</td>
-  <td>{{ dato["pais_obra"] }}</td>
-  <td>{% if dato["es_serie_obra"] == 1 %}<span class="glyphicon glyphicon-ok-sign"></span>{% endif %}</td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato['imagen_obra_1'] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato['imagen_obra_2'] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
-  <td>{{ dato["url_obra"] }}</td>
+  <td><a href="{{ url_for('admin_inscripcion', id_inscripcion=id) }}">{{ dato["titulo_obra"] }}</a></td>
   <td>{{ dato["nombre_presentante"] }}</td>
-  <td>{{ dato["nacionalidad_presentante"] }}</td>
-  <td>{{ dato["correo_presentante"] }}</td>
-  <td>{{ dato["domicilio_presentante"] }}</td>
-  <td>{{ dato["web_presentante"] }}</td>
-  <td>{{ dato["telefono_presentante"] }}</td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato['foto_director'] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
+  <td>{% if dato["es_serie_obra"] == 1 %}<span class="glyphicon glyphicon-ok-sign"></span>{% endif %}</td>
 </tr>
 {% endfor %}
 </table>

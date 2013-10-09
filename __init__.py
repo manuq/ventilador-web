@@ -10,6 +10,7 @@ from flask import redirect
 from flask import url_for
 from flask import send_from_directory
 from flask import g
+from flask import abort
 from flask.ext.login import LoginManager
 from flask.ext.login import UserMixin
 from flask.ext.login import login_required
@@ -289,6 +290,18 @@ def admin():
     cur.execute("select * from inscripciones")
     datos = cur.fetchall()
     return render_template('admin.html', datos=datos, usuario=current_user,
+                           URL_SUBIDOS=URL_SUBIDOS)
+
+@app.route('/admin/<id_inscripcion>')
+@login_required
+def admin_inscripcion(id_inscripcion):
+    cur = get_db().cursor()
+    cur.execute("select * from inscripciones where id=?", (id_inscripcion,))
+    datos = cur.fetchone()
+    if datos is None:
+        abort(404)
+
+    return render_template('admin_inscripcion.html', datos=datos, usuario=current_user,
                            URL_SUBIDOS=URL_SUBIDOS)
 
 @app.errorhandler(404)

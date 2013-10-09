@@ -1,0 +1,59 @@
+{% extends "base_admin.html" %}
+{% block title %}Admin{% endblock %}
+{% block contenido %}
+<h2>{{ datos["titulo_obra"] }} - {{ datos["nombre_presentante"] }}</h2>
+<h3>De la obra</h3>
+<p>
+  <label>Título:</label> {{ datos["titulo_obra"] }}
+</p>
+<p>
+  <label>Duración:</label> {{ datos["duracion_obra"] }}
+</p>
+<p>
+  <label>Sinopsis:</label> {{ datos["sinopsis_obra"] }}
+</p>
+<p>
+  <label>País de origen:</label> {{ datos["pais_obra"] }}
+</p>
+<p>
+  <label>Es serie:</label> {% if datos["es_serie_obra"] == 1 %}Sí{% else %}No{% endif %}
+</p>
+<p>
+  <label>Imágenes: (click para ampliar)</label><br/>
+  <a target="_blank" href="{{ URL_SUBIDOS }}{{ datos['imagen_obra_1'] }}">
+    <img height="150" src="{{ URL_SUBIDOS }}{{ datos['imagen_obra_1'] }}">
+  </a>
+  <a target="_blank" href="{{ URL_SUBIDOS }}{{ datos['imagen_obra_2'] }}">
+    <img height="150" src="{{ URL_SUBIDOS }}{{ datos['imagen_obra_2'] }}">
+  </a>
+</p>
+<p>
+  <label>URL descarga:</label> {{ datos["url_obra"] }}
+</p>
+<h3>Del presentante</h3>
+<p>
+  <label>Nombre:</label> {{ datos["nombre_presentante"] }}
+</p>
+<p>
+  <label>Nacionalidad:</label> {{ datos["nacionalidad_presentante"] }}
+</p>
+<p>
+  <label>Correo electrónico:</label> {{ datos["correo_presentante"] }}
+</p>
+<p>
+  <label>Domicilio:</label> {{ datos["domicilio_presentante"] }}
+</p>
+<p>
+  <label>Web:</label> {{ datos["web_presentante"] }}
+</p>
+<p>
+  <label>Teléfono:</label> {{ datos["telefono_presentante"] }}
+</p>
+<p>
+  <label>Foto: (click para ampliar)</label><br/>
+  <a target="_blank" href="{{ URL_SUBIDOS }}{{ datos['foto_director'] }}">
+    <img height="150" src="{{ URL_SUBIDOS }}{{ datos['foto_director'] }}">
+  </a>
+</p>
+
+{% endblock %}
