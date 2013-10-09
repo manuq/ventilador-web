@@ -93,17 +93,6 @@
       </div>
     </div>
 
-    <div class="form-group  {% if 'correo-presentante' in errores.keys() %}has-error{% endif %}">
-      <label for="inputCorreo" class="col-lg-2 control-label">Correo electrónico</label>
-      <div class="col-lg-10">
-        <input type="email" name="correo-presentante" id="inputCorreo" class="form-control"
-               {% if 'correo-presentante' in datos.keys() %}value="{{ datos['correo-presentante'] }}"{% endif %}>
-        {% if 'correo-presentante' in errores.keys() %}
-        <span class="help-block">{{ errores['correo-presentante'] }}</span>
-        {% endif %}
-      </div>
-    </div>
-
     <div class="form-group {% if 'nacionalidad-presentante' in errores.keys() %}has-error{% endif %}">
       <label for="inputNacionalidad" class="col-lg-2 control-label">Nacionalidad</label>
       <div class="col-lg-10">
@@ -115,6 +104,17 @@
       </div>
     </div>
 
+    <div class="form-group  {% if 'correo-presentante' in errores.keys() %}has-error{% endif %}">
+      <label for="inputCorreo" class="col-lg-2 control-label">Correo electrónico</label>
+      <div class="col-lg-10">
+        <input type="email" name="correo-presentante" id="inputCorreo" class="form-control"
+               {% if 'correo-presentante' in datos.keys() %}value="{{ datos['correo-presentante'] }}"{% endif %}>
+        {% if 'correo-presentante' in errores.keys() %}
+        <span class="help-block">{{ errores['correo-presentante'] }}</span>
+        {% endif %}
+      </div>
+    </div>
+
     <div class="form-group {% if 'domicilio-presentante' in errores.keys() %}has-error{% endif %}">
       <label for="inputDomicilio" class="col-lg-2 control-label">Domicilio</label>
       <div class="col-lg-10">
@@ -122,6 +122,18 @@
                {% if 'domicilio-presentante' in datos.keys() %}value="{{ datos['domicilio-presentante'] }}"{% endif %}>
         {% if 'domicilio-presentante' in errores.keys() %}
         <span class="help-block">{{ errores['domicilio-presentante'] }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-group {% if 'web-presentante' in errores.keys() %}has-error{% endif %}">
+      <label for="inputWeb" class="col-lg-2 control-label">Dirección de sitio web personal (o Facebook, Twitter, etc.)</label>
+      <div class="col-lg-10">
+        <input type="url" name="web-presentante" id="inputWeb" class="form-control"
+               {% if 'web-presentante' in datos.keys() %}value="{{ datos['web-presentante'] }}"{% endif %} placeholder="http://...">
+        <span class="help-block">Opcional.</span>
+        {% if 'web-presentante' in errores.keys() %}
+        <span class="help-block">{{ errores['web-presentante'] }}</span>
         {% endif %}
       </div>
     </div>

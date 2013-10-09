@@ -138,9 +138,10 @@ def este_formu_vale(formu, archivos):
         'es-serie-obra': formu.get('es-serie-obra', None) == 'on',
         'url-obra': formu['url-obra'].strip(),
         'nombre-presentante': formu['nombre-presentante'].strip(),
-        'correo-presentante': formu['correo-presentante'].strip(),
         'nacionalidad-presentante': formu['nacionalidad-presentante'].strip(),
+        'correo-presentante': formu['correo-presentante'].strip(),
         'domicilio-presentante': formu['domicilio-presentante'].strip(),
+        'web-presentante': formu['web-presentante'].strip(),
         'telefono-presentante': formu['telefono-presentante'].strip(),
         }
 
