@@ -30,6 +30,16 @@
       </div>
     </div>
 
+    <div class="form-group {% if 'sinopsis-obra' in errores.keys() %}has-error{% endif %}">
+      <label for="inputSinopsis" class="col-lg-2 control-label">Sinopsis</label>
+      <div class="col-lg-10">
+        <textarea rows="5" name="sinopsis-obra" id="inputSinopsis" class="form-control">{% if 'sinopsis-obra' in datos.keys() %}{{ datos['sinopsis-obra'] }}{% endif %}</textarea>
+        {% if 'sinopsis-obra' in errores.keys() %}
+        <span class="help-block">{{ errores['sinopsis-obra'] }}</span>
+        {% endif %}
+      </div>
+    </div>
+
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
           <div class="checkbox">
