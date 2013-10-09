@@ -258,18 +258,21 @@ def formu():
             # guardar en la base de datos
 
             cur = get_db().cursor()
-            cur.execute('insert into inscripciones values (?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            cur.execute('insert into inscripciones values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                         (None,
                          datos['titulo-obra'],
                          datos['duracion-obra'],
+                         datos['sinopsis-obra'],
+                         datos['pais-obra'],
                          datos['es-serie-obra'],
                          url_1,
                          url_2,
                          datos['url-obra'],
                          datos['nombre-presentante'],
-                         datos['correo-presentante'],
                          datos['nacionalidad-presentante'],
+                         datos['correo-presentante'],
                          datos['domicilio-presentante'],
+                         datos['web-presentante'],
                          datos['telefono-presentante'],
                          url_3,
                          ))
