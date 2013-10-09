@@ -20,18 +20,18 @@
 </tr>
 {% for dato in datos %}
 <tr>
-  <td>{{ dato[1] }}</td>
-  <td>{{ dato[2] }}</td>
-  <td>{% if dato[3] == 1 %}<span class="glyphicon glyphicon-ok-sign"></span>{% endif %}</td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato[4] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato[5] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
-  <td>{{ dato[6] }}</td>
-  <td>{{ dato[7] }}</td>
-  <td>{{ dato[8] }}</td>
-  <td>{{ dato[9] }}</td>
-  <td>{{ dato[10] }}</td>
-  <td>{{ dato[11] }}</td>
-  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato[12] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
+  <td>{{ dato["titulo_obra"] }}</td>
+  <td>{{ dato["duracion_obra"] }}</td>
+  <td>{% if dato["es_serie_obra"] == 1 %}<span class="glyphicon glyphicon-ok-sign"></span>{% endif %}</td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato['imagen_obra_1'] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato['imagen_obra_2'] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
+  <td>{{ dato["url_obra"] }}</td>
+  <td>{{ dato["nombre_presentante"] }}</td>
+  <td>{{ dato["correo_presentante"] }}</td>
+  <td>{{ dato["nacionalidad_presentante"] }}</td>
+  <td>{{ dato["domicilio_presentante"] }}</td>
+  <td>{{ dato["telefono_presentante"] }}</td>
+  <td><a class="btn btn-xs btn-success" target="_blank" href="{{ URL_SUBIDOS }}{{ dato['foto_director'] }}"><span class="glyphicon glyphicon-picture"></span> ver</a></td>
 </tr>
 {% endfor %}
 </table>
