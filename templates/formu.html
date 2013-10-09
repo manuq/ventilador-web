@@ -40,6 +40,17 @@
       </div>
     </div>
 
+    <div class="form-group {% if 'pais-obra' in errores.keys() %}has-error{% endif %}">
+      <label for="inputPaisObra" class="col-lg-2 control-label">País de origen de la obra</label>
+      <div class="col-lg-10">
+        <input type="text" name="pais-obra" id="inputPaisObra" class="form-control"
+               {% if 'pais-obra' in datos.keys() %}value="{{ datos['pais-obra'] }}"{% endif %}>
+        {% if 'pais-obra' in errores.keys() %}
+        <span class="help-block">{{ errores['pais-obra'] }}</span>
+        {% endif %}
+      </div>
+    </div>
+
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
           <div class="checkbox">

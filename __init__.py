@@ -135,6 +135,7 @@ def este_formu_vale(formu, archivos):
         'titulo-obra': formu['titulo-obra'].strip(),
         'duracion-obra': formu['duracion-obra'].strip(),
         'sinopsis-obra': formu['sinopsis-obra'].strip(),
+        'pais-obra': formu['pais-obra'].strip(),
         'es-serie-obra': formu.get('es-serie-obra', None) == 'on',
         'url-obra': formu['url-obra'].strip(),
         'nombre-presentante': formu['nombre-presentante'].strip(),
@@ -175,6 +176,9 @@ def este_formu_vale(formu, archivos):
 
     if datos['sinopsis-obra'] == "":
         errores['sinopsis-obra'] = u"Ingresar la sinopsis de la obra."
+
+    if datos['pais-obra'] == "":
+        errores['pais-obra'] = u"Ingresar el país de origen de la obra."
 
     if len(datos['duracion-obra'].split(":")) != 3:
         errores['duracion-obra'] = u"Ingresar una duración correcta, en el formato especificado."
