@@ -113,7 +113,7 @@ def close_connection(exception):
 
 @app.route('/')
 def index():
-    return redirect(url_for('inscripcion'))
+    return redirect(url_for('inscripcion_terminada'))
 
 @app.route('/favicon.ico')
 def favicon():
@@ -121,6 +121,10 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/inscripcion')
+def inscripcion_terminada():
+    return render_template('inscripcion_terminada.html')
+
+@app.route('/noteinscribas/inscripcion')
 def inscripcion():
     return render_template('inscripcion.html')
 
@@ -222,7 +226,7 @@ def este_formu_vale(formu, archivos):
 
     return datos, errores
 
-@app.route('/inscripcion/formulario', methods=['GET', 'POST'])
+@app.route('/noteinscribas/inscripcion/formulario', methods=['GET', 'POST'])
 def formu():
     datos = {}
     errores = {}
